@@ -94,4 +94,4 @@ We can use this data to visualise the interpolation, and it doesn’t look too b
 
 ![Dry Bulk Density Plot](../images/dry_bulk_density_interpolation.png)
 
-![Dry Bulk Density Plot](../images/fraction_organic_matter.png)
+![Organic carbon](../images/fraction_organic_matter.png)
