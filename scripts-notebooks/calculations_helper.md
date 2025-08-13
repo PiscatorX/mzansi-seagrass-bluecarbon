@@ -2,11 +2,11 @@
 
 This [stocks_helper_functions.R](stocks_helper_functions.R) is a script file containing three simple functions:
 
-1. `interpolate_slice(data, x_val)`
+1. `interpolate_slice`
 
-1. `predict_val(data, x_val)`
+1. `predict_val`
 
-1. `impute_regression(df, y_var, x_var)`
+1. `impute_regression`
 
 ## The functions are written for implementation within a tidyverse pipe workflow.
 
