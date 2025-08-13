@@ -67,8 +67,31 @@ dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction
 
 ```
 
+Let's carefully break down this R code step by step. 
 
+### Grouping
 
+```r
+dplyr::group_by(site_id, core_id) |>
+```
 
+* Groups the data by `site_id` and `core_id`. this ensures that our interpolation will be at the core level
+--
 
+###  Summarising
 
+```
+Interpolated15cm <- dplyr::summarise(
+		    dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
+		    fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
+		    depth_min = get_nearest(depth_min, 15),
+		    depth_max = 15)
+```
+
+This is where we use our custom `interpolate_slice` helper function, which takes two arguments: `data` and `depth`. For the `data` argument, we use the `pick()` function to create a dataframe with two columns: `depth_max` and `dry_bulk_density`. We then pass in the `depth` at which we want to perform the interpolation. Additionally, we also have to extract depth_min closest to our interpolation using the custom helper function ``get_nearest``. This code willcreate a data.frame for just the interpolated depth for the four cores but should have the same columns original dataframe.
+
+We can use this data to visualise the interpolation, and it doesn’t look too bad. There are better approaches, of course, but most require more data. Here, we assume that our variables of interest change linearly, and our points fall very close to where we would expect.
+
+![Dry Bulk Density Plot](../images/dry_bulk_density_interpolation.png)
+
+![Dry Bulk Density Plot](../images/fraction_organic_matter.png)
