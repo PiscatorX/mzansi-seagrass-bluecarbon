@@ -1,6 +1,3 @@
-
-
-
 predict_val <- function(data, x_val) {
     
   clean_data <- data |>
@@ -55,18 +52,5 @@ interpolate_slice <- function(data, x_val) {
   model <- lm(y ~ x, data = clean_data)
 
   predict(model, newdata = data.frame(x = x_val))
-}
-
-
-get_nearest <- function (data, depth) {
-    
-    if (depth > max(data)) {
-        
-        nearest_depth = NA
-    }
-    else{ 
-         return(max(data[data <= depth], na.rm = TRUE))
-        }
-
 }
 
