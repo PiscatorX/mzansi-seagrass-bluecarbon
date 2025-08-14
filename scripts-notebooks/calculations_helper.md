@@ -6,7 +6,7 @@ To interpolate and extrapolate we use function in an R script [stocks_helper_fun
 
 1. `predict_val`
 
-## The functions are written for implementation within a tidyverse pipe workflow.
+#### The functions are written for implementation within a tidyverse pipe workflow.
 
 ### Example: interpolations of dry bulk density:
 
