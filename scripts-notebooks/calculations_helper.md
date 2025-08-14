@@ -22,28 +22,30 @@ source("stocks_helper_functions.R")
 For data were going to used sampled data from upper Berg River Estuary from one site with four cores using the tibble package in tidyverse.
 
 ```
+
 Berg_sample_data <- tibble::tribble(
-                  ~site_id,   ~core_id, ~depth_min, ~depth_max, ~dry_bulk_density, ~fraction_organic_matter,
-                    "Berg", "Berg2_C1",          5,         10,            1.2451,                    0.003,
-                    "Berg", "Berg2_C2",          5,         10,            1.9218,                    0.083,
-                    "Berg", "Berg2_C3",          5,         10,           1.92015,                    0.047,
-                    "Berg", "Berg2_C4",          5,         10,            1.2454,                    0.089,
-                    "Berg", "Berg2_C1",         10,         20,           1.28512,                    0.074,
-                    "Berg", "Berg2_C2",         10,         20,           1.42038,                    0.192,
-                    "Berg", "Berg2_C3",         10,         20,           1.35172,                    0.068,
-                    "Berg", "Berg2_C4",         10,         20,            1.2553,                    0.081,
-                    "Berg", "Berg2_C1",         20,         30,           1.31188,                    0.138,
-                    "Berg", "Berg2_C2",         20,         30,           1.30294,                    0.061,
-                    "Berg", "Berg2_C3",         20,         30,            1.3361,                    0.055,
-                    "Berg", "Berg2_C4",         20,         30,           1.32318,                    0.088,
-                    "Berg", "Berg2_C1",          0,          5,            1.0924,                    0.234,
-                    "Berg", "Berg2_C2",          0,          5,  1.80816666666667,                    0.095,
-                    "Berg", "Berg2_C3",          0,          5,  1.83173333333333,                    0.155,
-                    "Berg", "Berg2_C4",          0,          5,  1.10342857142857,                    0.035,
-                    "Berg", "Berg2_C1",         30,         50,           1.30858,                    0.202,
-                    "Berg", "Berg2_C2",         30,         50,           1.26856,                    0.222,
-                    "Berg", "Berg2_C3",         30,         50,           1.36132,                    0.011,
-                    "Berg", "Berg2_C4",         30,         50,           1.36486,                    0.113)
+                      ~site_id,   ~core_id, ~depth_min, ~depth_max, ~dry_bulk_density, ~fraction_organic_matter,
+                        "Berg", "Berg2_C1",          0,          5,            1.0924,                    0.234,
+                        "Berg", "Berg2_C1",          5,         10,            1.2451,                    0.003,
+                        "Berg", "Berg2_C1",         10,         20,           1.28512,                    0.074,
+                        "Berg", "Berg2_C1",         20,         30,           1.31188,                    0.138,
+                        "Berg", "Berg2_C1",         30,         50,           1.30858,                    0.202,
+                        "Berg", "Berg2_C2",          0,          5,  1.80816666666667,                    0.095,
+                        "Berg", "Berg2_C2",          5,         10,            1.9218,                    0.083,
+                        "Berg", "Berg2_C2",         10,         20,           1.42038,                    0.192,
+                        "Berg", "Berg2_C2",         20,         30,           1.30294,                    0.061,
+                        "Berg", "Berg2_C2",         30,         50,           1.26856,                    0.222,
+                        "Berg", "Berg2_C3",          0,          5,  1.83173333333333,                    0.155,
+                        "Berg", "Berg2_C3",          5,         10,           1.92015,                    0.047,
+                        "Berg", "Berg2_C3",         10,         20,           1.35172,                    0.068,
+                        "Berg", "Berg2_C3",         20,         30,            1.3361,                    0.055,
+                        "Berg", "Berg2_C3",         30,         50,           1.36132,                    0.011,
+                        "Berg", "Berg2_C4",          0,          5,  1.10342857142857,                    0.035,
+                        "Berg", "Berg2_C4",          5,         10,            1.2454,                    0.089,
+                        "Berg", "Berg2_C4",         10,         20,            1.2553,                    0.081,
+                        "Berg", "Berg2_C4",         20,         30,           1.32318,                    0.088,
+                        "Berg", "Berg2_C4",         30,         50,           1.36486,                    0.113
+  )
 
 ```
 
