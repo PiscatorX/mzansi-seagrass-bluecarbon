@@ -92,10 +92,9 @@ This is where we use our custom `interpolate_slice` helper function, which takes
 
 We can use this data to visualise the interpolation, and it doesn’t look too bad. There are better approaches, of course, but most require more data. Here, we assume that our variables of interest change linearly, and our points fall very close to where we would expect.  
 
-
 ![Dry Bulk Density Plot](../plots/dry_bulk_density_interpolation.png)
 
-![Organic carbon](../plots/fraction_organic_matter.png)
+![Organic carbon](../plots/fraction_organic_matter_interpolation.png)
 
 ## Extrapolation
 
@@ -117,5 +116,5 @@ Extropolated100cm <- Berg_sample_data |>
 
 We can add the extrapoled data to our graph and we can see that extrapolation tends to over/understimates values:
 
-![Organic carbon](../plots/fraction_organic_matter.png)
+![Organic carbon](../plots/fraction_organic_matter100.png)
 
