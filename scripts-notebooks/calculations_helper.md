@@ -130,5 +130,5 @@ rbind(Berg_sample_data, Interpolated15cm, Extropolated100cm)
 
 ![Data frame](../plots/dataframe_example.png)
 
-The data can then be used to calculate the carbon stocks following the blue carbon manual as usual. A notebook including code to generate the plots is availabe in [jupyter notebook](carbon_modelling.ipynb
+The data can then be used to calculate the carbon stocks following the blue carbon manual as usual. A notebook including code to generate the plots is availabe in [jupyter notebook](carbon_modelling.ipynb).
 
