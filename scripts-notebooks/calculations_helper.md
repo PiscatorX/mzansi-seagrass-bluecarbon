@@ -59,7 +59,7 @@ Berg_sample_data |>
 dplyr::group_by(site_id, core_id) |>
 dplyr::summarise(dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
                 fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
-                depth_min = get_nearest(depth_min, 15),
+                depth_min = max(depth_min[depth_min <= 15], na.rm = TRUE), 
                 depth_max = depth) |>
 dplyr::ungroup() |>
 dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
@@ -83,7 +83,7 @@ dplyr::group_by(site_id, core_id) |>
 Interpolated15cm <- dplyr::summarise(
 		    dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
 		    fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
-		    depth_min = get_nearest(depth_min, 15),
+		    depth_min = max(depth_min[depth_min <= 15], na.rm = TRUE),
 		    depth_max = 15)
       
 ```
@@ -106,7 +106,7 @@ Extropolated100cm <- Berg_sample_data |>
                      dplyr::group_by(site_id, core_id) |>
                      dplyr::summarise(dry_bulk_density = predict_val(pick(depth_max, dry_bulk_density), 100),
                                     fraction_organic_matter = predict_val(pick(depth_max, fraction_organic_matter), 100), 
-                                    depth_min = get_nearest(depth_min, 100),
+                                    depth_min = max(depth_min[depth_min <= 100], na.rm = TRUE),
                                     depth_max = 100) |>
                      dplyr::ungroup() |>
                      dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
