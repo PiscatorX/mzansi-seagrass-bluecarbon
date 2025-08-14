@@ -55,14 +55,14 @@ To see the column names, we use `colnames(Berg_sample_data)`.
 To interpolate the `dry_bulk_density` and `fraction_organic_matter` will call our help functions
 
 ```
-Berg_sample_data |>
-dplyr::group_by(site_id, core_id) |>
-dplyr::summarise(dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
-                fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
-                depth_min = max(depth_min[depth_min <= 15], na.rm = TRUE), 
-                depth_max = depth) |>
-dplyr::ungroup() |>
-dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
+Interpolated15cm <-    Berg_sample_data |>
+                        dplyr::group_by(site_id, core_id) |>
+                        dplyr::summarise(dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
+                                        fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
+                                        depth_min = max(depth_max[depth_max <= 15], na.rm = TRUE),
+                                        depth_max = 15) |>
+                        dplyr::ungroup() |>
+                        dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
 
 ```
 
@@ -80,12 +80,10 @@ dplyr::group_by(site_id, core_id) |>
 ###  Summarising
 
 ```
-Interpolated15cm <- dplyr::summarise(
-		    dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
-		    fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
-		    depth_min = max(depth_min[depth_min <= 15], na.rm = TRUE),
-		    depth_max = 15)
-      
+	dplyr::summarise(dry_bulk_density = interpolate_slice(pick(depth_max, dry_bulk_density), 15),
+					fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
+					depth_min = max(depth_max[depth_max <= 15], na.rm = TRUE),
+					depth_max = 15) 
 ```
 
 This is where we use our custom `interpolate_slice` helper function, which takes two arguments: `data` and `depth`. For the `data` argument, we use the `pick()` function to create a dataframe with two columns: `depth_max` and `dry_bulk_density`. We then pass in the `depth` at which we want to perform the interpolation. Additionally, we also have to extract depth_min closest to our interpolation using the custom helper function ``get_nearest``. This code willcreate a data.frame for just the interpolated depth for the four cores but should have the same columns original dataframe.
@@ -105,12 +103,11 @@ Also important to note that the above code will estimate values for depths withi
 Extropolated100cm <- Berg_sample_data |>
                      dplyr::group_by(site_id, core_id) |>
                      dplyr::summarise(dry_bulk_density = predict_val(pick(depth_max, dry_bulk_density), 100),
-                                    fraction_organic_matter = predict_val(pick(depth_max, fraction_organic_matter), 100), 
-                                    depth_min = max(depth_min[depth_min <= 100], na.rm = TRUE),
+                                    fraction_organic_matter = predict_val(pick(depth_max, fraction_organic_matter), 100),
+                                    depth_min = max(depth_max[depth_max <= 100], na.rm = TRUE),
                                     depth_max = 100) |>
                      dplyr::ungroup() |>
                      dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
-
 ```
 We can add the extrapoled data to our graph and we can see that extrapolation (green points)  tends to over/understimates values.
 
