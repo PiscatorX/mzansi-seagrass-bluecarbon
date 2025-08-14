@@ -90,7 +90,7 @@ Interpolated15cm <- dplyr::summarise(
 
 This is where we use our custom `interpolate_slice` helper function, which takes two arguments: `data` and `depth`. For the `data` argument, we use the `pick()` function to create a dataframe with two columns: `depth_max` and `dry_bulk_density`. We then pass in the `depth` at which we want to perform the interpolation. Additionally, we also have to extract depth_min closest to our interpolation using the custom helper function ``get_nearest``. This code willcreate a data.frame for just the interpolated depth for the four cores but should have the same columns original dataframe.
 
-We can use this data to visualise the interpolation, and it doesn’t look too bad. There are better approaches, of course, but most require more data. Here, we assume that our variables of interest change linearly, and our points fall very close to where we would expect.  
+We can use this data to visualise the interpolation, and it doesn’t look too bad. There are better approaches, of course, but most require more data. Here, we assume that our variables of interest change linearly, and our points (green) fall very close to where we would expect.  
 
 ![Dry Bulk Density Plot](../plots/dry_bulk_density_interpolation.png)
 
@@ -102,7 +102,6 @@ Also important to note that the above code will estimate values for depths withi
 
 
 ```
-
 Extropolated100cm <- Berg_sample_data |>
                      dplyr::group_by(site_id, core_id) |>
                      dplyr::summarise(dry_bulk_density = predict_val(pick(depth_max, dry_bulk_density), 100),
@@ -113,8 +112,7 @@ Extropolated100cm <- Berg_sample_data |>
                      dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
 
 ```
-
-We can add the extrapoled data to our graph and we can see that extrapolation tends to over/understimates values:
+We can add the extrapoled data to our graph and we can see that extrapolation (green points)  tends to over/understimates values.
 
 ![Organic carbon](../plots/fraction_organic_matter100.png)
 
