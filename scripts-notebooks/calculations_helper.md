@@ -1,6 +1,6 @@
 # Carbon stocks modelling helper functions
 
-To interpolate and extrapolate we use function in an R script [stocks_helper_functions.R](stocks_helper_functions.R) is a script file containing three simple functions:
+To interpolate and extrapolate we use two of the functions in an R script [stocks_helper_functions.R](stocks_helper_functions.R) is a script file containing three simple functions:
 
 1. `interpolate_slice`
 
