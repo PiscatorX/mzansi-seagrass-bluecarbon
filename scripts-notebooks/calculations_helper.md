@@ -116,3 +116,19 @@ We can add the extrapoled data to our graph and we can see that extrapolation (g
 
 ![Organic carbon](../plots/fraction_organic_matter100.png)
 
+
+We can then combine the original dataset but first we can add another column to differentiate between interpolated and extrapolated.
+
+```
+Berg_sample_data$data_type <- "Measured"
+Interpolated15cm$data_type <- "Interpolated"
+Extropolated100cm$data_type <- "Extrapolated"
+
+```
+
+```
+rbind(Berg_sample_data, Interpolated15cm, Extropolated100cm)
+
+```
+
+![Data frame](../plots/dataframe_example.png)
