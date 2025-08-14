@@ -85,6 +85,7 @@ Interpolated15cm <- dplyr::summarise(
 		    fraction_organic_matter = interpolate_slice(pick(depth_max, fraction_organic_matter), 15), 
 		    depth_min = get_nearest(depth_min, 15),
 		    depth_max = 15)
+      
 ```
 
 This is where we use our custom `interpolate_slice` helper function, which takes two arguments: `data` and `depth`. For the `data` argument, we use the `pick()` function to create a dataframe with two columns: `depth_max` and `dry_bulk_density`. We then pass in the `depth` at which we want to perform the interpolation. Additionally, we also have to extract depth_min closest to our interpolation using the custom helper function ``get_nearest``. This code willcreate a data.frame for just the interpolated depth for the four cores but should have the same columns original dataframe.
@@ -96,4 +97,25 @@ We can use this data to visualise the interpolation, and it doesn’t look too b
 
 ![Organic carbon](../plots/fraction_organic_matter.png)
 
-Also important to note that is will estimate values for depths within the range of measured values, for value outside the range we use a similar but different function for extrapolation `predict_val`
+## Extrapolation
+
+Also important to note that the above code will estimate values for depths within the range of measured values, for value outside the range we use a similar but different function forextrapolation `predict_val`
+
+
+```
+
+Extropolated100cm <- Berg_sample_data |>
+                     dplyr::group_by(site_id, core_id) |>
+                     dplyr::summarise(dry_bulk_density = predict_val(pick(depth_max, dry_bulk_density), 100),
+                                    fraction_organic_matter = predict_val(pick(depth_max, fraction_organic_matter), 100), 
+                                    depth_min = get_nearest(depth_min, 100),
+                                    depth_max = 100) |>
+                     dplyr::ungroup() |>
+                     dplyr::select(site_id, core_id, depth_min, depth_max, dry_bulk_density, fraction_organic_matter)
+
+```
+
+We can add the extrapoled data to our graph and we can see that extrapolation tends to over/understimates values:
+
+![Organic carbon](../plots/fraction_organic_matter.png)
+
