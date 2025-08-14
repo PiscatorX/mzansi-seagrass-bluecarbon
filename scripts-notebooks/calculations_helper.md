@@ -1,4 +1,3 @@
-library(tidyverse)
 # Carbon stocks modelling helper functions
 
 This [stocks_helper_functions.R](stocks_helper_functions.R) is a script file containing three simple functions:
@@ -90,8 +89,11 @@ Interpolated15cm <- dplyr::summarise(
 
 This is where we use our custom `interpolate_slice` helper function, which takes two arguments: `data` and `depth`. For the `data` argument, we use the `pick()` function to create a dataframe with two columns: `depth_max` and `dry_bulk_density`. We then pass in the `depth` at which we want to perform the interpolation. Additionally, we also have to extract depth_min closest to our interpolation using the custom helper function ``get_nearest``. This code willcreate a data.frame for just the interpolated depth for the four cores but should have the same columns original dataframe.
 
-We can use this data to visualise the interpolation, and it doesn’t look too bad. There are better approaches, of course, but most require more data. Here, we assume that our variables of interest change linearly, and our points fall very close to where we would expect.
+We can use this data to visualise the interpolation, and it doesn’t look too bad. There are better approaches, of course, but most require more data. Here, we assume that our variables of interest change linearly, and our points fall very close to where we would expect.  
 
-![Dry Bulk Density Plot](../images/dry_bulk_density_interpolation.png)
 
-![Organic carbon](../images/fraction_organic_matter.png)
+![Dry Bulk Density Plot](../plots/dry_bulk_density_interpolation.png)
+
+![Organic carbon](../plots/fraction_organic_matter.png)
+
+Also important to note that is will estimate values for depths within the range of measured values, for value outside the range we use a similar but different function for extrapolation `predict_val`
