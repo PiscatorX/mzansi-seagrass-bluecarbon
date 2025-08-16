@@ -1,9 +1,0 @@
-predict_val <- function(data, x_val) {
-    
-  clean_data <- data |>
-    setNames(c("x", "y")) |>
-    dplyr::filter(!is.na(x) & !is.na(y))
-    
-  model <- lm(y ~ x, data = clean_data)
-  predict(model, newdata = data.frame(x = x_val))
-}
